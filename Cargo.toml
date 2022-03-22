@@ -8,17 +8,6 @@ edition = "2018"
 
 [workspace]
 members = [
-    "InstallingRust/Clippy",
-    "InstallingRust/ClippyFixed",
-    "InstallingRust/HelloWorld",
-    "FirstStepsWithRust/hello_yourname",
-    "FirstStepsWithRust/hello_yourname_function",
-    "FirstStepsWithRust/treehouse_guestlist",
-    "FirstStepsWithRust/treehouse_guestlist_enum",
-    "FirstStepsWithRust/treehouse_guestlist_problem",
-    "FirstStepsWithRust/treehouse_guestlist_struct",
-    "FirstStepsWithRust/treehouse_guestlist_trim",
-    "FirstStepsWithRust/treehouse_guestlist_vector",
     "FirstGameFlappyAscii/flappy_dragon",
     "FirstGameFlappyAscii/flappy_bonus",
     "FirstGameFlappyAscii/flappy_player",
