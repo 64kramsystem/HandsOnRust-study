@@ -1,48 +1,48 @@
 [package]
-name = "parent_delete_me"
-version = "0.1.0"
 authors = ["Herbert Wolverson <herberticus@gmail.com>"]
 edition = "2018"
+name = "parent_delete_me"
+version = "0.1.0"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [workspace]
 members = [
-    "03_FirstGameFlappyAscii/flappy_dragon",
-    "03_FirstGameFlappyAscii/flappy_bonus",
-    "03_FirstGameFlappyAscii/flappy_player",
-    "03_FirstGameFlappyAscii/flappy_states",
-    "03_FirstGameFlappyAscii/hello_bterm",
-    "05_BasicDungeonCrawler/dungeon_crawl_map",
-    "05_BasicDungeonCrawler/dungeon_crawl_player",
-    "05_BasicDungeonCrawler/dungeon_crawl_rooms",
-    "05_BasicDungeonCrawler/dungeon_crawl_graphics",
-    "EntitiesComponentsAndSystems/dungeonecs",
-    "EntitiesComponentsAndSystems/playerecs",
-    "TurnBasedGames/wandering",
-    "TurnBasedGames/turnbased",
-    "TurnBasedGames/intent",
-    "HealthSimpleMelee/health",
-    "HealthSimpleMelee/combat",
-    "HealthSimpleMelee/healing",
-    "WinningAndLosing/gauntlet",
-    "WinningAndLosing/losing",
-    "WinningAndLosing/winning",
-    "WhatCanISee/fov",
-    "WhatCanISee/eyesight",
-    "WhatCanISee/memory",
-    "MoreInterestingDungeons/traits",
-    "MoreInterestingDungeons/traits_rooms",
-    "MoreInterestingDungeons/cellular",
-    "MoreInterestingDungeons/output_harness",
-    "MoreInterestingDungeons/drunkard",
-    "MoreInterestingDungeons/prefab",
-    "MapTheming/themed",
-    "InventoryAndPowerUps/potions_and_scrolls",
-    "InventoryAndPowerUps/carrying_items",
-    "DeeperDungeons/more_levels",
-    "Loot/loot_tables",
-    "Loot/better_combat"
+  "03_FirstGameFlappyAscii/flappy_dragon",
+  "03_FirstGameFlappyAscii/flappy_bonus",
+  "03_FirstGameFlappyAscii/flappy_player",
+  "03_FirstGameFlappyAscii/flappy_states",
+  "03_FirstGameFlappyAscii/hello_bterm",
+  "05_BasicDungeonCrawler/dungeon_crawl_map",
+  "05_BasicDungeonCrawler/dungeon_crawl_player",
+  "05_BasicDungeonCrawler/dungeon_crawl_rooms",
+  "05_BasicDungeonCrawler/dungeon_crawl_graphics",
+  "06_EntitiesComponentsAndSystems/dungeonecs",
+  "06_EntitiesComponentsAndSystems/playerecs",
+  "TurnBasedGames/wandering",
+  "TurnBasedGames/turnbased",
+  "TurnBasedGames/intent",
+  "HealthSimpleMelee/health",
+  "HealthSimpleMelee/combat",
+  "HealthSimpleMelee/healing",
+  "WinningAndLosing/gauntlet",
+  "WinningAndLosing/losing",
+  "WinningAndLosing/winning",
+  "WhatCanISee/fov",
+  "WhatCanISee/eyesight",
+  "WhatCanISee/memory",
+  "MoreInterestingDungeons/traits",
+  "MoreInterestingDungeons/traits_rooms",
+  "MoreInterestingDungeons/cellular",
+  "MoreInterestingDungeons/output_harness",
+  "MoreInterestingDungeons/drunkard",
+  "MoreInterestingDungeons/prefab",
+  "MapTheming/themed",
+  "InventoryAndPowerUps/potions_and_scrolls",
+  "InventoryAndPowerUps/carrying_items",
+  "DeeperDungeons/more_levels",
+  "Loot/loot_tables",
+  "Loot/better_combat",
 ]
 
 [profile.release]
