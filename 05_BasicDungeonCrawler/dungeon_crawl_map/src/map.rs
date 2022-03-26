@@ -16,7 +16,7 @@ pub fn map_idx(x: i32, y: i32) -> usize {
 }
 
 impl Map {
-pub fn new() -> Self {
+    pub fn new() -> Self {
         Self {
             tiles: vec![TileType::Floor; NUM_TILES],
         }
@@ -28,14 +28,10 @@ pub fn new() -> Self {
                 let idx = map_idx(x, y);
                 match self.tiles[idx] {
                     TileType::Floor => {
-                        ctx.set(x, y, YELLOW, BLACK, 
-                            to_cp437('.')
-                        );
+                        ctx.set(x, y, YELLOW, BLACK, to_cp437('.'));
                     }
                     TileType::Wall => {
-                        ctx.set(x, y, GREEN, BLACK, 
-                            to_cp437('#')
-                        );
+                        ctx.set(x, y, GREEN, BLACK, to_cp437('#'));
                     }
                 }
             }

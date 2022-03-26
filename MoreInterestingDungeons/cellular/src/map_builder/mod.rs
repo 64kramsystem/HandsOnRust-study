@@ -11,20 +11,20 @@ trait MapArchitect {
 
 const NUM_ROOMS: usize = 20;
 pub struct MapBuilder {
-    pub map : Map,
-    pub rooms : Vec<Rect>,
-    pub monster_spawns : Vec<Point>,
-    pub player_start : Point,
-    pub amulet_start : Point
+    pub map: Map,
+    pub rooms: Vec<Rect>,
+    pub monster_spawns: Vec<Point>,
+    pub player_start: Point,
+    pub amulet_start: Point,
 }
 
 impl MapBuilder {
     pub fn new(rng: &mut RandomNumberGenerator) -> Self {
-        let mut architect = CellularAutomataArchitect{};
+        let mut architect = CellularAutomataArchitect {};
         architect.new(rng)
     }
 
-    fn fill(&mut self, tile : TileType) {
+    fn fill(&mut self, tile: TileType) {
         self.map.tiles.iter_mut().for_each(|t| *t = tile);
     }
 
@@ -34,22 +34,23 @@ impl MapBuilder {
             SCREEN_HEIGHT,
             &vec![self.map.point2d_to_index(self.player_start)],
             &self.map,
-            1024.0
+            1024.0,
         );
 
-        const UNREACHABLE : &f32 = &f32::MAX;
-        self.map.index_to_point2d
-        (
-            dijkstra_map.map
+        const UNREACHABLE: &f32 = &f32::MAX;
+        self.map.index_to_point2d(
+            dijkstra_map
+                .map
                 .iter()
                 .enumerate()
-                .filter(|(_,dist)| *dist < UNREACHABLE)
-                .max_by(|a,b| a.1.partial_cmp(b.1).unwrap())
-                .unwrap().0
+                .filter(|(_, dist)| *dist < UNREACHABLE)
+                .max_by(|a, b| a.1.partial_cmp(b.1).unwrap())
+                .unwrap()
+                .0,
         )
     }
 
-    fn build_random_rooms(&mut self, rng : &mut RandomNumberGenerator) {
+    fn build_random_rooms(&mut self, rng: &mut RandomNumberGenerator) {
         while self.rooms.len() < NUM_ROOMS {
             let room = Rect::with_size(
                 rng.range(1, SCREEN_WIDTH - 10),
@@ -65,9 +66,7 @@ impl MapBuilder {
             }
             if !overlap {
                 room.for_each(|p| {
-                    if p.x > 0 && p.x < SCREEN_WIDTH && 
-                        p.y > 0 && p.y < SCREEN_HEIGHT 
-                    {
+                    if p.x > 0 && p.x < SCREEN_WIDTH && p.y > 0 && p.y < SCREEN_HEIGHT {
                         let idx = map_idx(p.x, p.y);
                         self.map.tiles[idx] = TileType::Floor;
                     }
@@ -78,18 +77,18 @@ impl MapBuilder {
         }
     }
 
-    fn apply_horizontal_tunnel(&mut self, x1:i32, x2:i32, y:i32) {
-        use std::cmp::{min, max};
-        for x in min(x1,x2) ..= max(x1,x2) {
+    fn apply_horizontal_tunnel(&mut self, x1: i32, x2: i32, y: i32) {
+        use std::cmp::{max, min};
+        for x in min(x1, x2)..=max(x1, x2) {
             if let Some(idx) = self.map.try_idx(Point::new(x, y)) {
                 self.map.tiles[idx as usize] = TileType::Floor;
             }
         }
     }
 
-    fn apply_vertical_tunnel(&mut self, y1:i32, y2:i32, x:i32) {
-        use std::cmp::{min, max};
-        for y in min(y1,y2) ..= max(y1,y2) {
+    fn apply_vertical_tunnel(&mut self, y1: i32, y2: i32, x: i32) {
+        use std::cmp::{max, min};
+        for y in min(y1, y2)..=max(y1, y2) {
             if let Some(idx) = self.map.try_idx(Point::new(x, y)) {
                 self.map.tiles[idx as usize] = TileType::Floor;
             }
@@ -98,13 +97,13 @@ impl MapBuilder {
 
     fn build_corridors(&mut self, rng: &mut RandomNumberGenerator) {
         let mut rooms = self.rooms.clone();
-        rooms.sort_by(|a,b| a.center().x.cmp(&b.center().x));
+        rooms.sort_by(|a, b| a.center().x.cmp(&b.center().x));
 
         for (i, room) in rooms.iter().enumerate().skip(1) {
-            let prev = rooms[i-1].center();
+            let prev = rooms[i - 1].center();
             let new = room.center();
 
-            if rng.range(0,2) == 1 {
+            if rng.range(0, 2) == 1 {
                 self.apply_horizontal_tunnel(prev.x, new.x, prev.y);
                 self.apply_vertical_tunnel(prev.y, new.y, new.x);
             } else {
@@ -114,13 +113,11 @@ impl MapBuilder {
         }
     }
 
-    fn spawn_monsters(
-        &self, 
-        start: &Point, 
-        rng: &mut RandomNumberGenerator
-    ) -> Vec<Point> {
-        const NUM_MONSTERS : usize = 50;
-        let mut spawnable_tiles : Vec<Point> = self.map.tiles
+    fn spawn_monsters(&self, start: &Point, rng: &mut RandomNumberGenerator) -> Vec<Point> {
+        const NUM_MONSTERS: usize = 50;
+        let mut spawnable_tiles: Vec<Point> = self
+            .map
+            .tiles
             .iter()
             .enumerate()
             .filter(|(idx, t)|// (1)
@@ -128,17 +125,17 @@ impl MapBuilder {
                     DistanceAlg::Pythagoras.distance2d(
                         *start,
                         self.map.index_to_point2d(*idx)
-                    ) > 10.0
-            )
+                    ) > 10.0)
             .map(|(idx, _)| self.map.index_to_point2d(idx))
             .collect();
 
         let mut spawns = Vec::new();
-        for _ in 0 .. NUM_MONSTERS {
-            let target_index = rng.random_slice_index(&spawnable_tiles)// (2)
+        for _ in 0..NUM_MONSTERS {
+            let target_index = rng
+                .random_slice_index(&spawnable_tiles) // (2)
                 .unwrap();
             spawns.push(spawnable_tiles[target_index].clone());
-            spawnable_tiles.remove(target_index);// (3)
+            spawnable_tiles.remove(target_index); // (3)
         }
         spawns
     }

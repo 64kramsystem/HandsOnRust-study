@@ -23,14 +23,12 @@ impl Map {
         }
     }
 
-    pub fn in_bounds(&self, point : Point) -> bool {
-        point.x >= 0 && point.x < SCREEN_WIDTH 
-            && point.y >= 0 && point.y < SCREEN_HEIGHT
+    pub fn in_bounds(&self, point: Point) -> bool {
+        point.x >= 0 && point.x < SCREEN_WIDTH && point.y >= 0 && point.y < SCREEN_HEIGHT
     }
 
-    pub fn can_enter_tile(&self, point : Point) -> bool {
-        self.in_bounds(point) 
-            && self.tiles[map_idx(point.x, point.y)]==TileType::Floor
+    pub fn can_enter_tile(&self, point: Point) -> bool {
+        self.in_bounds(point) && self.tiles[map_idx(point.x, point.y)] == TileType::Floor
     }
 
     pub fn render(&self, ctx: &mut BTerm) {

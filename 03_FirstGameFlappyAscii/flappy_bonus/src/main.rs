@@ -2,17 +2,17 @@
 
 use bracket_lib::prelude::*;
 
-const SCREEN_WIDTH : i32 = 40;
-const SCREEN_HEIGHT : i32 = 25;
-const FRAME_DURATION : f32 = 75.0;
+const SCREEN_WIDTH: i32 = 40;
+const SCREEN_HEIGHT: i32 = 25;
+const FRAME_DURATION: f32 = 75.0;
 
-const DRAGON_FRAMES : [u16; 6] = [ 64, 1, 2, 3, 2, 1 ];
+const DRAGON_FRAMES: [u16; 6] = [64, 1, 2, 3, 2, 1];
 
 struct Player {
     x: i32,
     y: f32,
     velocity: f32,
-    frame: usize // Usize to index arrays
+    frame: usize, // Usize to index arrays
 }
 
 impl Player {
@@ -21,12 +21,12 @@ impl Player {
             x,
             y: y as f32,
             velocity: 0.0,
-            frame: 0
+            frame: 0,
         }
     }
 
     fn gravity_and_move(&mut self) {
-         if self.velocity < 2.0 {
+        if self.velocity < 2.0 {
             self.velocity += 0.1;
         }
 
@@ -54,7 +54,7 @@ impl Player {
             PointF::new(2.0, 2.0),
             WHITE,
             NAVY,
-            DRAGON_FRAMES[self.frame]
+            DRAGON_FRAMES[self.frame],
         );
         ctx.set_active_console(0);
     }
@@ -63,7 +63,7 @@ impl Player {
 struct Obstacle {
     x: i32,
     gap_y: i32,
-    size: i32
+    size: i32,
 }
 
 impl Obstacle {
@@ -72,46 +72,34 @@ impl Obstacle {
         Obstacle {
             x,
             gap_y: random.range(5, 20),
-            size: i32::max(2, 10 - score)
+            size: i32::max(2, 10 - score),
         }
     }
 
-    fn render(&mut self, ctx: &mut BTerm, player_x : i32) {
+    fn render(&mut self, ctx: &mut BTerm, player_x: i32) {
         // The ground
         for x in 0..SCREEN_WIDTH {
-            ctx.set(x, SCREEN_HEIGHT-1, WHITE, WHITE, to_cp437('#'));
+            ctx.set(x, SCREEN_HEIGHT - 1, WHITE, WHITE, to_cp437('#'));
         }
 
         let screen_x = self.x - player_x;
         let half_size = self.size / 2;
         // Top wall
         for y in 0..self.gap_y - half_size {
-            ctx.set(
-                screen_x,
-                y,
-                WHITE,
-                NAVY,
-                179,
-            );
+            ctx.set(screen_x, y, WHITE, NAVY, 179);
         }
 
         // Bottom wall - now leaving room for the ground
-        for y in self.gap_y + half_size..SCREEN_HEIGHT-1 {
-            ctx.set(
-                screen_x,
-                y,
-                WHITE,
-                NAVY,
-                179,
-            );
+        for y in self.gap_y + half_size..SCREEN_HEIGHT - 1 {
+            ctx.set(screen_x, y, WHITE, NAVY, 179);
         }
     }
 
     fn hit_obstacle(&self, player: &Player) -> bool {
         let half_size = self.size / 2;
         player.x == self.x
-            && ((player.y as i32) < self.gap_y - half_size || player.y as i32 > 
-            self.gap_y + half_size)
+            && ((player.y as i32) < self.gap_y - half_size
+                || player.y as i32 > self.gap_y + half_size)
     }
 }
 
@@ -141,7 +129,7 @@ impl State {
     }
 
     fn restart(&mut self) {
-        self.player = Player::new(5, SCREEN_WIDTH/2);
+        self.player = Player::new(5, SCREEN_WIDTH / 2);
         self.frame_time = 0.0;
         self.obstacle = Obstacle::new(SCREEN_WIDTH, 0);
         self.mode = GameMode::Playing;
@@ -199,8 +187,7 @@ impl State {
             self.score += 1;
             self.obstacle = Obstacle::new(self.player.x + SCREEN_WIDTH, self.score);
         }
-        if self.player.y as i32 > SCREEN_HEIGHT || self.obstacle.hit_obstacle(&self.player) 
-        {
+        if self.player.y as i32 > SCREEN_HEIGHT || self.obstacle.hit_obstacle(&self.player) {
             self.mode = GameMode::End;
         }
     }

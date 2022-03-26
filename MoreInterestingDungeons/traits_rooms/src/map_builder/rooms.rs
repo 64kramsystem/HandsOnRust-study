@@ -1,16 +1,17 @@
-use crate::prelude::*;
 use super::MapArchitect;
+use crate::prelude::*;
 
 pub struct RoomsArchitect {}
 
 impl MapArchitect for RoomsArchitect {
-    fn new(&mut self, rng: &mut RandomNumberGenerator) -> MapBuilder {//(1)
-        let mut mb = MapBuilder{
-            map : Map::new(),
+    fn new(&mut self, rng: &mut RandomNumberGenerator) -> MapBuilder {
+        //(1)
+        let mut mb = MapBuilder {
+            map: Map::new(),
             rooms: Vec::new(),
-            monster_spawns : Vec::new(),
-            player_start : Point::zero(),
-            amulet_start : Point::zero()
+            monster_spawns: Vec::new(),
+            player_start: Point::zero(),
+            amulet_start: Point::zero(),
         };
 
         mb.fill(TileType::Wall);
@@ -25,4 +26,3 @@ impl MapArchitect for RoomsArchitect {
         mb
     }
 }
-

@@ -1,9 +1,9 @@
 #![warn(clippy::pedantic)]
 
+mod camera;
 mod map;
 mod map_builder;
 mod player;
-mod camera;
 
 mod prelude {
     pub use bracket_lib::prelude::*;
@@ -11,10 +11,10 @@ mod prelude {
     pub const SCREEN_HEIGHT: i32 = 50;
     pub const DISPLAY_WIDTH: i32 = SCREEN_WIDTH / 2;
     pub const DISPLAY_HEIGHT: i32 = SCREEN_HEIGHT / 2;
-    pub use crate::map::*;
-    pub use crate::player::*;
-    pub use crate::map_builder::*;
     pub use crate::camera::*;
+    pub use crate::map::*;
+    pub use crate::map_builder::*;
+    pub use crate::player::*;
 }
 
 use prelude::*;
@@ -22,7 +22,7 @@ use prelude::*;
 struct State {
     map: Map,
     player: Player,
-    camera: Camera
+    camera: Camera,
 }
 
 impl State {
@@ -30,9 +30,9 @@ impl State {
         let mut rng = RandomNumberGenerator::new();
         let map_builder = MapBuilder::new(&mut rng);
         Self {
-            map : map_builder.map,
+            map: map_builder.map,
             player: Player::new(map_builder.player_start),
-            camera: Camera::new(map_builder.player_start)
+            camera: Camera::new(map_builder.player_start),
         }
     }
 }
@@ -50,7 +50,7 @@ impl GameState for State {
 }
 
 fn main() -> BError {
-    let context = BTermBuilder::new()// (1)
+    let context = BTermBuilder::new() // (1)
         .with_title("Dungeon Crawler")
         .with_fps_cap(30.0)
         .with_dimensions(DISPLAY_WIDTH, DISPLAY_HEIGHT) // (2)
@@ -58,8 +58,7 @@ fn main() -> BError {
         .with_resource_path("resources/") // (4)
         .with_font("dungeonfont.png", 32, 32) // (5)
         .with_simple_console(DISPLAY_WIDTH, DISPLAY_HEIGHT, "dungeonfont.png") // (6)
-        .with_simple_console_no_bg(DISPLAY_WIDTH, DISPLAY_HEIGHT, 
-            "dungeonfont.png") // (7)
+        .with_simple_console_no_bg(DISPLAY_WIDTH, DISPLAY_HEIGHT, "dungeonfont.png") // (7)
         .build()?;
 
     main_loop(context, State::new())

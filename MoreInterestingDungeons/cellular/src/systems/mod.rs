@@ -1,16 +1,16 @@
 use crate::prelude::*;
 
-mod map_render;
+mod chasing;
+mod combat;
+mod end_turn;
 mod entity_render;
+mod fov;
+mod hud;
+mod map_render;
+mod movement;
 mod player_input;
 mod random_move;
-mod chasing;
-mod end_turn;
-mod movement;
-mod hud;
 mod tooltips;
-mod combat;
-mod fov;
 
 pub fn build_input_scheduler() -> Schedule {
     Schedule::builder()

@@ -6,7 +6,7 @@ pub fn player_input(
     ecs: &mut SubWorld,
     commands: &mut CommandBuffer,
     #[resource] key: &Option<VirtualKeyCode>,
-    #[resource] turn_state: &mut TurnState
+    #[resource] turn_state: &mut TurnState,
 ) {
     let mut players = <(Entity, &Point)>::query().filter(component::<Player>());
 
@@ -19,10 +19,15 @@ pub fn player_input(
             _ => Point::new(0, 0),
         };
 
-        players.iter(ecs).for_each(| (entity, pos) | {
+        players.iter(ecs).for_each(|(entity, pos)| {
             let destination = *pos + delta;
-            commands
-                .push(((), WantsToMove{ entity: *entity, destination }));
+            commands.push((
+                (),
+                WantsToMove {
+                    entity: *entity,
+                    destination,
+                },
+            ));
         });
         *turn_state = TurnState::PlayerTurn;
     }

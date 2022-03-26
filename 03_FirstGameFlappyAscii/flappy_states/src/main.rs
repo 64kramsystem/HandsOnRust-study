@@ -2,8 +2,9 @@
 
 use bracket_lib::prelude::*;
 
-enum GameMode {// (1)
-    Menu,// (2)
+enum GameMode {
+    // (1)
+    Menu, // (2)
     Playing,
     End,
 }
@@ -29,10 +30,11 @@ impl State {
         ctx.print_centered(8, "(P) Play Game");
         ctx.print_centered(9, "(Q) Quit Game");
 
-        if let Some(key) = ctx.key {// (3)
+        if let Some(key) = ctx.key {
+            // (3)
             match key {
-                VirtualKeyCode::P => self.restart(),// (4)
-                VirtualKeyCode::Q => ctx.quitting = true,// (5)
+                VirtualKeyCode::P => self.restart(),      // (4)
+                VirtualKeyCode::Q => ctx.quitting = true, // (5)
                 _ => {}
             }
         }

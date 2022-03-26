@@ -13,7 +13,6 @@ mod prelude {
 
 use prelude::*;
 
-
 struct State {
     map: Map,
     player: Player,
@@ -22,10 +21,8 @@ struct State {
 impl State {
     fn new() -> Self {
         Self {
-            map : Map::new(),
-            player: Player::new(
-                Point::new(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
-            ),
+            map: Map::new(),
+            player: Player::new(Point::new(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)),
         }
     }
 }
