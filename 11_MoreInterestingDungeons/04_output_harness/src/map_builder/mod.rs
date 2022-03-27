@@ -50,7 +50,7 @@ impl MapBuilder {
         let dijkstra_map = DijkstraMap::new(
             SCREEN_WIDTH,
             SCREEN_HEIGHT,
-            &vec![self.map.point2d_to_index(self.player_start)],
+            &[self.map.point2d_to_index(self.player_start)],
             &self.map,
             1024.0,
         );
@@ -106,7 +106,7 @@ pub fn display(
                 _ => print!("{}", ".".truecolor(64, 64, 64)),
             }
         }
-        println!("");
+        println!();
     }
 
     let mut ignore_me = String::new();

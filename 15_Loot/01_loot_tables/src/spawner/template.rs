@@ -55,20 +55,20 @@ impl Templates {
             });
 
         let mut commands = CommandBuffer::new(ecs); // (17)
-        spawn_points.iter().for_each(|pt| {
+        for pt in spawn_points.iter() {
             // (18)
             if let Some(entity) = rng.random_slice_entry(&available_entities) {
                 // (19)
                 self.spawn_entity(pt, entity, &mut commands); // (20)
             }
-        });
+        }
         commands.flush(ecs);
     }
 
     fn spawn_entity(&self, pt: &Point, template: &Template, commands: &mut CommandBuffer) {
         let entity = commands.push((
             // (21)
-            pt.clone(), // (22)
+            *pt, // (22)
             Render {
                 color: ColorPair::new(WHITE, BLACK),
                 glyph: to_cp437(template.glyph), // (23)

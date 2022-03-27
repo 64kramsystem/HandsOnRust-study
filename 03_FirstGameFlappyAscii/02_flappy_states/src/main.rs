@@ -55,7 +55,7 @@ impl State {
         }
     }
 
-    fn play(&mut self, ctx: &mut BTerm) {
+    fn play(&mut self, _ctx: &mut BTerm) {
         self.mode = GameMode::End;
     }
 }

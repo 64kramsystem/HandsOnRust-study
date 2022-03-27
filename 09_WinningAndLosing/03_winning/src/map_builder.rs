@@ -24,7 +24,7 @@ impl MapBuilder {
         let dijkstra_map = DijkstraMap::new(
             SCREEN_WIDTH,
             SCREEN_HEIGHT,
-            &vec![mb.map.point2d_to_index(mb.player_start)],
+            &[mb.map.point2d_to_index(mb.player_start)],
             &mb.map,
             1024.0,
         );
@@ -55,7 +55,7 @@ impl MapBuilder {
                 rng.range(2, 10),
             );
             let mut overlap = false;
-            for r in self.rooms.iter() {
+            for r in &self.rooms {
                 if r.intersect(&room) {
                     overlap = true;
                 }

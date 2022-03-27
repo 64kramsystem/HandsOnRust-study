@@ -138,7 +138,7 @@ impl CellularAutomataArchitect {
                     DistanceAlg::Pythagoras.distance2d(center, self.map.index_to_point2d(idx)),
                 )
             })
-            .min_by(|(_, distance), (_, distance2)| distance.partial_cmp(&distance2).unwrap())
+            .min_by(|(_, distance), (_, distance2)| distance.partial_cmp(distance2).unwrap())
             .map(|(idx, _)| idx)
             .unwrap();
         self.map.index_to_point2d(closest_point)
@@ -160,7 +160,7 @@ impl CellularAutomataArchitect {
 
         let mut spawns = Vec::new();
         for _ in 0..NUM_MONSTERS {
-            spawns.push(rng.random_slice_entry(&spawnable_tiles).unwrap().clone());
+            spawns.push(*rng.random_slice_entry(&spawnable_tiles).unwrap());
         }
         spawns
     }

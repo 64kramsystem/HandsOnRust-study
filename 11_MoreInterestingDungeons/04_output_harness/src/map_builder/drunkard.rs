@@ -47,7 +47,7 @@ impl MapArchitect for DrunkardsWalkArchitect {
             let dijkstra_map = DijkstraMap::new(
                 SCREEN_WIDTH,
                 SCREEN_HEIGHT,
-                &vec![self.map.point2d_to_index(center)],
+                &[self.map.point2d_to_index(center)],
                 &self.map,
                 1024.0,
             );
@@ -104,14 +104,14 @@ impl DrunkardsWalkArchitect {
         }
 
         for _ in 0..NUM_MONSTERS {
-            spawns.push(rng.random_slice_entry(&spawnable_tiles).unwrap().clone());
+            spawns.push(*rng.random_slice_entry(&spawnable_tiles).unwrap());
         }
         spawns
     }
 
     fn drunkard(&mut self, start: &Point, rng: &mut RandomNumberGenerator) -> Vec<Point> {
         let mut path = Vec::new();
-        let mut drunkard_pos = start.clone();
+        let mut drunkard_pos = *start;
         let mut distance_staggered = 0;
 
         loop {

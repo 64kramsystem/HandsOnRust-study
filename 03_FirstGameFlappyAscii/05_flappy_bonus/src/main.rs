@@ -37,7 +37,7 @@ impl Player {
 
         self.x += 1;
         self.frame += 1;
-        self.frame = self.frame % 6; // % is modulus - remainder
+        self.frame %= 6; // % is modulus - remainder
     }
 
     fn flap(&mut self) {

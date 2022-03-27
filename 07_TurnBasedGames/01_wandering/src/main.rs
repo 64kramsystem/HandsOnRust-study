@@ -43,7 +43,7 @@ impl State {
             .rooms
             .iter()
             .skip(1)
-            .map(|r| r.center())
+            .map(bracket_lib::prelude::Rect::center)
             .for_each(|pos| spawn_monster(&mut ecs, &mut rng, pos));
         resources.insert(map_builder.map);
         resources.insert(Camera::new(map_builder.player_start));

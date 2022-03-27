@@ -51,11 +51,11 @@ impl Templates {
             });
 
         let mut commands = legion::systems::CommandBuffer::new(ecs);
-        spawn_points.iter().for_each(|pt| {
+        for pt in spawn_points.iter() {
             if let Some(entity) = rng.random_slice_entry(&available_entities) {
                 self.spawn_entity(pt, entity, &mut commands);
             }
-        });
+        }
         commands.flush(ecs);
     }
 
@@ -66,7 +66,7 @@ impl Templates {
         commands: &mut legion::systems::CommandBuffer,
     ) {
         let entity = commands.push((
-            pt.clone(),
+            *pt,
             Render {
                 color: ColorPair::new(WHITE, BLACK),
                 glyph: to_cp437(template.glyph),

@@ -32,7 +32,7 @@ impl MapBuilder {
         let dijkstra_map = DijkstraMap::new(
             SCREEN_WIDTH,
             SCREEN_HEIGHT,
-            &vec![self.map.point2d_to_index(self.player_start)],
+            &[self.map.point2d_to_index(self.player_start)],
             &self.map,
             1024.0,
         );
@@ -59,7 +59,7 @@ impl MapBuilder {
                 rng.range(2, 10),
             );
             let mut overlap = false;
-            for r in self.rooms.iter() {
+            for r in &self.rooms {
                 if r.intersect(&room) {
                     overlap = true;
                 }
@@ -134,7 +134,7 @@ impl MapBuilder {
             let target_index = rng
                 .random_slice_index(&spawnable_tiles) // (2)
                 .unwrap();
-            spawns.push(spawnable_tiles[target_index].clone());
+            spawns.push(spawnable_tiles[target_index]);
             spawnable_tiles.remove(target_index); // (3)
         }
         spawns

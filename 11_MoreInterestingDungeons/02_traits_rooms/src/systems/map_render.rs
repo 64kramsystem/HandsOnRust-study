@@ -8,7 +8,7 @@ pub fn map_render(#[resource] map: &Map, #[resource] camera: &Camera, ecs: &SubW
     let mut draw_batch = DrawBatch::new();
     draw_batch.target(0);
 
-    let player_fov = fov.iter(ecs).nth(0).unwrap();
+    let player_fov = fov.iter(ecs).next().unwrap();
 
     for y in camera.top_y..=camera.bottom_y {
         for x in camera.left_x..camera.right_x {

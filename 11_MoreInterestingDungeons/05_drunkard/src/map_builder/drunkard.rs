@@ -38,7 +38,7 @@ impl MapArchitect for DrunkardsWalkArchitect {
                 // (3)
                 SCREEN_WIDTH,
                 SCREEN_HEIGHT,
-                &vec![mb.map.point2d_to_index(center)],
+                &[mb.map.point2d_to_index(center)],
                 &mb.map,
                 1024.0,
             );
@@ -58,7 +58,7 @@ impl MapArchitect for DrunkardsWalkArchitect {
 
 impl DrunkardsWalkArchitect {
     fn drunkard(&mut self, start: &Point, rng: &mut RandomNumberGenerator, map: &mut Map) {
-        let mut drunkard_pos = start.clone(); // (8)
+        let mut drunkard_pos = *start; // (8)
         let mut distance_staggered = 0; // (9)
 
         loop {

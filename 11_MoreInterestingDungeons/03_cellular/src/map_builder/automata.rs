@@ -89,7 +89,7 @@ impl CellularAutomataArchitect {
                 )
             })
             .min_by(
-                |(_, distance), (_, distance2)| distance.partial_cmp(&distance2).unwrap(), // (15)
+                |(_, distance), (_, distance2)| distance.partial_cmp(distance2).unwrap(), // (15)
             )
             .map(|(idx, _)| idx) // (16)
             .unwrap(); // (17)
