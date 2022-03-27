@@ -1,0 +1,635 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "03_FirstGameFlappyAscii/04_flappy_dragon",
+      "cargo": {
+        "args": [
+          "build",
+          "--bin=flappy_dragon",
+          "--package=flappy_dragon"
+        ],
+        "filter": {
+          "name": "flappy_dragon",
+          "kind": "bin"
+        }
+      },
+      "args": [],
+      "cwd": "${workspaceFolder}/03_FirstGameFlappyAscii/04_flappy_dragon"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "03_FirstGameFlappyAscii/05_flappy_bonus",
+      "cargo": {
+        "args": [
+          "build",
+          "--bin=flappy_bonus",
+          "--package=flappy_bonus"
+        ],
+        "filter": {
+          "name": "flappy_bonus",
+          "kind": "bin"
+        }
+      },
+      "args": [],
+      "cwd": "${workspaceFolder}/03_FirstGameFlappyAscii/05_flappy_bonus"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "03_FirstGameFlappyAscii/03_flappy_player",
+      "cargo": {
+        "args": [
+          "build",
+          "--bin=flappy_player",
+          "--package=flappy_player"
+        ],
+        "filter": {
+          "name": "flappy_player",
+          "kind": "bin"
+        }
+      },
+      "args": [],
+      "cwd": "${workspaceFolder}/03_FirstGameFlappyAscii/03_flappy_player"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "03_FirstGameFlappyAscii/02_flappy_states",
+      "cargo": {
+        "args": [
+          "build",
+          "--bin=flappy_states",
+          "--package=flappy_states"
+        ],
+        "filter": {
+          "name": "flappy_states",
+          "kind": "bin"
+        }
+      },
+      "args": [],
+      "cwd": "${workspaceFolder}/03_FirstGameFlappyAscii/02_flappy_states"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "03_FirstGameFlappyAscii/01_hello_bterm",
+      "cargo": {
+        "args": [
+          "build",
+          "--bin=hello_bterm",
+          "--package=hello_bterm"
+        ],
+        "filter": {
+          "name": "hello_bterm",
+          "kind": "bin"
+        }
+      },
+      "args": [],
+      "cwd": "${workspaceFolder}/03_FirstGameFlappyAscii/01_hello_bterm"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "05_BasicDungeonCrawler/01_dungeon_crawl_map",
+      "cargo": {
+        "args": [
+          "build",
+          "--bin=dungeon_crawl_map",
+          "--package=dungeon_crawl_map"
+        ],
+        "filter": {
+          "name": "dungeon_crawl_map",
+          "kind": "bin"
+        }
+      },
+      "args": [],
+      "cwd": "${workspaceFolder}/05_BasicDungeonCrawler/01_dungeon_crawl_map"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "05_BasicDungeonCrawler/02_dungeon_crawl_player",
+      "cargo": {
+        "args": [
+          "build",
+          "--bin=dungeon_crawl_player",
+          "--package=dungeon_crawl_player"
+        ],
+        "filter": {
+          "name": "dungeon_crawl_player",
+          "kind": "bin"
+        }
+      },
+      "args": [],
+      "cwd": "${workspaceFolder}/05_BasicDungeonCrawler/02_dungeon_crawl_player"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "05_BasicDungeonCrawler/03_dungeon_crawl_rooms",
+      "cargo": {
+        "args": [
+          "build",
+          "--bin=dungeon_crawl_rooms",
+          "--package=dungeon_crawl_rooms"
+        ],
+        "filter": {
+          "name": "dungeon_crawl_rooms",
+          "kind": "bin"
+        }
+      },
+      "args": [],
+      "cwd": "${workspaceFolder}/05_BasicDungeonCrawler/03_dungeon_crawl_rooms"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "05_BasicDungeonCrawler/04_dungeon_crawl_graphics",
+      "cargo": {
+        "args": [
+          "build",
+          "--bin=dungeon_crawl_graphics",
+          "--package=dungeon_crawl_graphics"
+        ],
+        "filter": {
+          "name": "dungeon_crawl_graphics",
+          "kind": "bin"
+        }
+      },
+      "args": [],
+      "cwd": "${workspaceFolder}/05_BasicDungeonCrawler/04_dungeon_crawl_graphics"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "06_EntitiesComponentsAndSystems/02_dungeonecs",
+      "cargo": {
+        "args": [
+          "build",
+          "--bin=dungeonecs",
+          "--package=dungeonecs"
+        ],
+        "filter": {
+          "name": "dungeonecs",
+          "kind": "bin"
+        }
+      },
+      "args": [],
+      "cwd": "${workspaceFolder}/06_EntitiesComponentsAndSystems/02_dungeonecs"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "06_EntitiesComponentsAndSystems/01_playerecs",
+      "cargo": {
+        "args": [
+          "build",
+          "--bin=playerecs",
+          "--package=playerecs"
+        ],
+        "filter": {
+          "name": "playerecs",
+          "kind": "bin"
+        }
+      },
+      "args": [],
+      "cwd": "${workspaceFolder}/06_EntitiesComponentsAndSystems/01_playerecs"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "07_TurnBasedGames/01_wandering",
+      "cargo": {
+        "args": [
+          "build",
+          "--bin=wandering",
+          "--package=wandering"
+        ],
+        "filter": {
+          "name": "wandering",
+          "kind": "bin"
+        }
+      },
+      "args": [],
+      "cwd": "${workspaceFolder}/07_TurnBasedGames/01_wandering"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "07_TurnBasedGames/02_turnbased",
+      "cargo": {
+        "args": [
+          "build",
+          "--bin=turnbased",
+          "--package=turnbased"
+        ],
+        "filter": {
+          "name": "turnbased",
+          "kind": "bin"
+        }
+      },
+      "args": [],
+      "cwd": "${workspaceFolder}/07_TurnBasedGames/02_turnbased"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "07_TurnBasedGames/03_intent",
+      "cargo": {
+        "args": [
+          "build",
+          "--bin=intent",
+          "--package=intent"
+        ],
+        "filter": {
+          "name": "intent",
+          "kind": "bin"
+        }
+      },
+      "args": [],
+      "cwd": "${workspaceFolder}/07_TurnBasedGames/03_intent"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "08_HealthSimpleMelee/01_health",
+      "cargo": {
+        "args": [
+          "build",
+          "--bin=health",
+          "--package=health"
+        ],
+        "filter": {
+          "name": "health",
+          "kind": "bin"
+        }
+      },
+      "args": [],
+      "cwd": "${workspaceFolder}/08_HealthSimpleMelee/01_health"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "08_HealthSimpleMelee/02_combat",
+      "cargo": {
+        "args": [
+          "build",
+          "--bin=combat",
+          "--package=combat"
+        ],
+        "filter": {
+          "name": "combat",
+          "kind": "bin"
+        }
+      },
+      "args": [],
+      "cwd": "${workspaceFolder}/08_HealthSimpleMelee/02_combat"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "08_HealthSimpleMelee/03_healing",
+      "cargo": {
+        "args": [
+          "build",
+          "--bin=healing",
+          "--package=healing"
+        ],
+        "filter": {
+          "name": "healing",
+          "kind": "bin"
+        }
+      },
+      "args": [],
+      "cwd": "${workspaceFolder}/08_HealthSimpleMelee/03_healing"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "09_WinningAndLosing/01_gauntlet",
+      "cargo": {
+        "args": [
+          "build",
+          "--bin=gauntlet",
+          "--package=gauntlet"
+        ],
+        "filter": {
+          "name": "gauntlet",
+          "kind": "bin"
+        }
+      },
+      "args": [],
+      "cwd": "${workspaceFolder}/09_WinningAndLosing/01_gauntlet"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "09_WinningAndLosing/02_losing",
+      "cargo": {
+        "args": [
+          "build",
+          "--bin=losing",
+          "--package=losing"
+        ],
+        "filter": {
+          "name": "losing",
+          "kind": "bin"
+        }
+      },
+      "args": [],
+      "cwd": "${workspaceFolder}/09_WinningAndLosing/02_losing"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "09_WinningAndLosing/03_winning",
+      "cargo": {
+        "args": [
+          "build",
+          "--bin=winning",
+          "--package=winning"
+        ],
+        "filter": {
+          "name": "winning",
+          "kind": "bin"
+        }
+      },
+      "args": [],
+      "cwd": "${workspaceFolder}/09_WinningAndLosing/03_winning"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "10_WhatCanISee/01_fov",
+      "cargo": {
+        "args": [
+          "build",
+          "--bin=fov",
+          "--package=fov"
+        ],
+        "filter": {
+          "name": "fov",
+          "kind": "bin"
+        }
+      },
+      "args": [],
+      "cwd": "${workspaceFolder}/10_WhatCanISee/01_fov"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "10_WhatCanISee/02_eyesight",
+      "cargo": {
+        "args": [
+          "build",
+          "--bin=eyesight",
+          "--package=eyesight"
+        ],
+        "filter": {
+          "name": "eyesight",
+          "kind": "bin"
+        }
+      },
+      "args": [],
+      "cwd": "${workspaceFolder}/10_WhatCanISee/02_eyesight"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "10_WhatCanISee/03_memory",
+      "cargo": {
+        "args": [
+          "build",
+          "--bin=memory",
+          "--package=memory"
+        ],
+        "filter": {
+          "name": "memory",
+          "kind": "bin"
+        }
+      },
+      "args": [],
+      "cwd": "${workspaceFolder}/10_WhatCanISee/03_memory"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "11_MoreInterestingDungeons/01_traits",
+      "cargo": {
+        "args": [
+          "build",
+          "--bin=traits",
+          "--package=traits"
+        ],
+        "filter": {
+          "name": "traits",
+          "kind": "bin"
+        }
+      },
+      "args": [],
+      "cwd": "${workspaceFolder}/11_MoreInterestingDungeons/01_traits"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "11_MoreInterestingDungeons/02_traits_rooms",
+      "cargo": {
+        "args": [
+          "build",
+          "--bin=traits_rooms",
+          "--package=traits_rooms"
+        ],
+        "filter": {
+          "name": "traits_rooms",
+          "kind": "bin"
+        }
+      },
+      "args": [],
+      "cwd": "${workspaceFolder}/11_MoreInterestingDungeons/02_traits_rooms"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "11_MoreInterestingDungeons/03_cellular",
+      "cargo": {
+        "args": [
+          "build",
+          "--bin=cellular",
+          "--package=cellular"
+        ],
+        "filter": {
+          "name": "cellular",
+          "kind": "bin"
+        }
+      },
+      "args": [],
+      "cwd": "${workspaceFolder}/11_MoreInterestingDungeons/03_cellular"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "11_MoreInterestingDungeons/04_output_harness",
+      "cargo": {
+        "args": [
+          "build",
+          "--bin=output_harness",
+          "--package=output_harness"
+        ],
+        "filter": {
+          "name": "output_harness",
+          "kind": "bin"
+        }
+      },
+      "args": [],
+      "cwd": "${workspaceFolder}/11_MoreInterestingDungeons/04_output_harness"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "11_MoreInterestingDungeons/05_drunkard",
+      "cargo": {
+        "args": [
+          "build",
+          "--bin=drunkard",
+          "--package=drunkard"
+        ],
+        "filter": {
+          "name": "drunkard",
+          "kind": "bin"
+        }
+      },
+      "args": [],
+      "cwd": "${workspaceFolder}/11_MoreInterestingDungeons/05_drunkard"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "11_MoreInterestingDungeons/06_prefab",
+      "cargo": {
+        "args": [
+          "build",
+          "--bin=prefab",
+          "--package=prefab"
+        ],
+        "filter": {
+          "name": "prefab",
+          "kind": "bin"
+        }
+      },
+      "args": [],
+      "cwd": "${workspaceFolder}/11_MoreInterestingDungeons/06_prefab"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "12_MapTheming/themed",
+      "cargo": {
+        "args": [
+          "build",
+          "--bin=themed",
+          "--package=themed"
+        ],
+        "filter": {
+          "name": "themed",
+          "kind": "bin"
+        }
+      },
+      "args": [],
+      "cwd": "${workspaceFolder}/12_MapTheming/themed"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "13_InventoryAndPowerUps/01_potions_and_scrolls",
+      "cargo": {
+        "args": [
+          "build",
+          "--bin=potions_and_scrolls",
+          "--package=potions_and_scrolls"
+        ],
+        "filter": {
+          "name": "potions_and_scrolls",
+          "kind": "bin"
+        }
+      },
+      "args": [],
+      "cwd": "${workspaceFolder}/13_InventoryAndPowerUps/01_potions_and_scrolls"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "13_InventoryAndPowerUps/02_carrying_items",
+      "cargo": {
+        "args": [
+          "build",
+          "--bin=carrying_items",
+          "--package=carrying_items"
+        ],
+        "filter": {
+          "name": "carrying_items",
+          "kind": "bin"
+        }
+      },
+      "args": [],
+      "cwd": "${workspaceFolder}/13_InventoryAndPowerUps/02_carrying_items"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "14_DeeperDungeons/more_levels",
+      "cargo": {
+        "args": [
+          "build",
+          "--bin=more_levels",
+          "--package=more_levels"
+        ],
+        "filter": {
+          "name": "more_levels",
+          "kind": "bin"
+        }
+      },
+      "args": [],
+      "cwd": "${workspaceFolder}/14_DeeperDungeons/more_levels"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "15_Loot/01_loot_tables",
+      "cargo": {
+        "args": [
+          "build",
+          "--bin=loot_tables",
+          "--package=loot_tables"
+        ],
+        "filter": {
+          "name": "loot_tables",
+          "kind": "bin"
+        }
+      },
+      "args": [],
+      "cwd": "${workspaceFolder}/15_Loot/01_loot_tables"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "15_Loot/02_better_combat",
+      "cargo": {
+        "args": [
+          "build",
+          "--bin=better_combat",
+          "--package=better_combat"
+        ],
+        "filter": {
+          "name": "better_combat",
+          "kind": "bin"
+        }
+      },
+      "args": [],
+      "cwd": "${workspaceFolder}/15_Loot/02_better_combat"
+    },
+  ]
+}
