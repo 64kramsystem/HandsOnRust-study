@@ -1,16 +1,15 @@
 #![warn(clippy::pedantic)]
 
-mod map; // (1)
+mod map;
 
 mod prelude {
-    // (2)
-    pub use bracket_lib::prelude::*; // (3)
-    pub const SCREEN_WIDTH: i32 = 80; // (4)
+    pub use bracket_lib::prelude::*;
+    pub const SCREEN_WIDTH: i32 = 80;
     pub const SCREEN_HEIGHT: i32 = 50;
-    pub use crate::map::*; // (5)
+    pub use crate::map::*;
 }
 
-use prelude::*; // (6)
+use prelude::*;
 
 struct State {
     map: Map,
@@ -32,7 +31,7 @@ impl GameState for State {
 fn main() -> BError {
     let context = BTermBuilder::simple80x50()
         .with_title("Dungeon Crawler")
-        .with_fps_cap(30.0) // (7)
+        .with_fps_cap(30.0)
         .build()?;
 
     main_loop(context, State::new())

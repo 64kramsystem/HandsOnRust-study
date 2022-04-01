@@ -18,9 +18,7 @@ pub fn map_render(#[resource] map: &Map, #[resource] camera: &Camera, ecs: &SubW
             if map.in_bounds(pt)
                 && (player_fov.visible_tiles.contains(&pt) | map.revealed_tiles[idx])
             {
-                // (1)
                 let tint = if player_fov.visible_tiles.contains(&pt) {
-                    // (2)
                     WHITE
                 } else {
                     DARK_GRAY
@@ -30,7 +28,7 @@ pub fn map_render(#[resource] map: &Map, #[resource] camera: &Camera, ecs: &SubW
                         draw_batch.set(
                             pt - offset,
                             ColorPair::new(
-                                tint, // (3)
+                                tint,
                                 BLACK,
                             ),
                             to_cp437('.'),

@@ -3,8 +3,7 @@ mod empty;
 use empty::EmptyArchitect;
 
 trait MapArchitect {
-    // (1)
-    fn new(&mut self, rng: &mut RandomNumberGenerator) -> MapBuilder; // (2)
+    fn new(&mut self, rng: &mut RandomNumberGenerator) -> MapBuilder;
 }
 
 const NUM_ROOMS: usize = 20;

@@ -79,10 +79,10 @@ impl Obstacle {
 
     fn hit_obstacle(&self, player: &Player) -> bool {
         let half_size = self.size / 2;
-        let does_x_match = player.x == self.x; // (1)
-        let player_above_gap = player.y < self.gap_y - half_size; // (2)
+        let does_x_match = player.x == self.x;
+        let player_above_gap = player.y < self.gap_y - half_size;
         let player_below_gap = player.y > self.gap_y + half_size;
-        does_x_match && (player_above_gap || player_below_gap) // (3)
+        does_x_match && (player_above_gap || player_below_gap)
     }
 }
 
@@ -163,11 +163,10 @@ impl State {
         }
         self.player.render(ctx);
         ctx.print(0, 0, "Press SPACE to flap.");
-        ctx.print(0, 1, &format!("Score: {}", self.score)); // (4)
+        ctx.print(0, 1, &format!("Score: {}", self.score));
 
-        self.obstacle.render(ctx, self.player.x); // (5)
+        self.obstacle.render(ctx, self.player.x);
         if self.player.x > self.obstacle.x {
-            // (6)
             self.score += 1;
             self.obstacle = Obstacle::new(self.player.x + SCREEN_WIDTH, self.score);
         }

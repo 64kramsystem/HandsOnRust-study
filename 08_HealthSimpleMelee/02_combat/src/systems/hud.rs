@@ -4,21 +4,20 @@ use crate::prelude::*;
 #[read_component(Health)]
 #[read_component(Player)]
 pub fn hud(ecs: &SubWorld) {
-    let mut health_query = <&Health>::query().filter(component::<Player>()); // (1)
+    let mut health_query = <&Health>::query().filter(component::<Player>());
     let player_health = health_query
-        .iter(ecs).next() // (2)
+        .iter(ecs).next()
         .unwrap();
 
     let mut draw_batch = DrawBatch::new();
-    draw_batch.target(2); // (3)
-    draw_batch.print_centered(1, "Explore the Dungeon. Cursor keys to move."); // (4)
+    draw_batch.target(2);
+    draw_batch.print_centered(1, "Explore the Dungeon. Cursor keys to move.");
     draw_batch.bar_horizontal(
-        // (5)
-        Point::zero(),              // (6)
-        SCREEN_WIDTH * 2,           // (7)
-        player_health.current,      // (8)
-        player_health.max,          // (9)
-        ColorPair::new(RED, BLACK), // (10)
+        Point::zero(),
+        SCREEN_WIDTH * 2,
+        player_health.current,
+        player_health.max,
+        ColorPair::new(RED, BLACK),
     );
     draw_batch.print_color_centered(
         0,

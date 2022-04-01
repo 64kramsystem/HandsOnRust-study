@@ -120,7 +120,7 @@ impl MapBuilder {
             .tiles
             .iter()
             .enumerate()
-            .filter(|(idx, t)|// (1)
+            .filter(|(idx, t)|
                 **t == TileType::Floor &&
                     DistanceAlg::Pythagoras.distance2d(
                         *start,
@@ -132,10 +132,10 @@ impl MapBuilder {
         let mut spawns = Vec::new();
         for _ in 0..NUM_MONSTERS {
             let target_index = rng
-                .random_slice_index(&spawnable_tiles) // (2)
+                .random_slice_index(&spawnable_tiles)
                 .unwrap();
             spawns.push(spawnable_tiles[target_index]);
-            spawnable_tiles.remove(target_index); // (3)
+            spawnable_tiles.remove(target_index);
         }
         spawns
     }

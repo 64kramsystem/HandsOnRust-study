@@ -7,9 +7,9 @@ const SCREEN_HEIGHT: i32 = 50;
 const FRAME_DURATION: f32 = 75.0;
 
 struct Player {
-    x: i32,        // (1)
-    y: i32,        // (2)
-    velocity: f32, // (3)
+    x: i32,
+    y: i32,
+    velocity: f32,
 }
 
 impl Player {
@@ -17,28 +17,26 @@ impl Player {
         Player {
             x,
             y,
-            velocity: 0.0, // (4)
+            velocity: 0.0,
         }
     }
 
     fn render(&mut self, ctx: &mut BTerm) {
         ctx.set(
-            // (5)
-            0,      // (6)
-            self.y, // (7)
-            YELLOW, // (8)
+            0,
+            self.y,
+            YELLOW,
             BLACK,
-            to_cp437('@'), // (9)
+            to_cp437('@'),
         );
     }
 
     fn gravity_and_move(&mut self) {
         if self.velocity < 2.0 {
-            // (10)
-            self.velocity += 0.2; // (11)
+            self.velocity += 0.2;
         }
-        self.y += self.velocity as i32; // (12)
-        self.x += 1; // (13)
+        self.y += self.velocity as i32;
+        self.x += 1;
         if self.y < 0 {
             self.y = 0;
         }
@@ -107,21 +105,19 @@ impl State {
     }
 
     fn play(&mut self, ctx: &mut BTerm) {
-        ctx.cls_bg(NAVY); // (14)
-        self.frame_time += ctx.frame_time_ms; // (15)
+        ctx.cls_bg(NAVY);
+        self.frame_time += ctx.frame_time_ms;
         if self.frame_time > FRAME_DURATION {
             self.frame_time = 0.0;
 
             self.player.gravity_and_move();
         }
         if let Some(VirtualKeyCode::Space) = ctx.key {
-            // (16)
             self.player.flap();
         }
         self.player.render(ctx);
         ctx.print(0, 0, "Press SPACE to flap.");
         if self.player.y > SCREEN_HEIGHT {
-            // (17)
             self.mode = GameMode::End;
         }
     }

@@ -1,6 +1,6 @@
 use crate::prelude::*;
 
-#[system(for_each)] // (1)
+#[system(for_each)]
 #[read_component(Player)]
 pub fn movement(
     entity: &Entity,
@@ -11,17 +11,16 @@ pub fn movement(
     commands: &mut CommandBuffer,
 ) {
     if map.can_enter_tile(want_move.destination) {
-        commands.add_component(want_move.entity, want_move.destination); // (2)
+        commands.add_component(want_move.entity, want_move.destination);
 
         if ecs
-            .entry_ref(want_move.entity) // (3)
-            .unwrap() // (4)
+            .entry_ref(want_move.entity)
+            .unwrap()
             .get_component::<Player>()
             .is_ok()
-        // (5)
         {
-            camera.on_player_move(want_move.destination); // (6)
+            camera.on_player_move(want_move.destination);
         }
     }
-    commands.remove(*entity); // (7)
+    commands.remove(*entity);
 }

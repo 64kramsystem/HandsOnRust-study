@@ -28,15 +28,13 @@ impl MapArchitect for DrunkardsWalkArchitect {
             .filter(|t| **t == TileType::Floor)
             .count()
             < DESIRED_FLOOR
-        // (1)
         {
             self.drunkard(
                 &Point::new(rng.range(0, SCREEN_WIDTH), rng.range(0, SCREEN_HEIGHT)),
                 rng,
                 &mut mb.map,
-            ); // (2)
+            );
             let dijkstra_map = DijkstraMap::new(
-                // (3)
                 SCREEN_WIDTH,
                 SCREEN_HEIGHT,
                 &[mb.map.point2d_to_index(center)],
@@ -44,9 +42,9 @@ impl MapArchitect for DrunkardsWalkArchitect {
                 1024.0,
             );
             dijkstra_map
-                .map // (4)
+                .map
                 .iter()
-                .enumerate() // (5)
+                .enumerate()
                 .filter(|(_, distance)| *distance > &2000.0)
                 .for_each(|(idx, _)| mb.map.tiles[idx] = TileType::Wall);
         }
@@ -59,27 +57,24 @@ impl MapArchitect for DrunkardsWalkArchitect {
 
 impl DrunkardsWalkArchitect {
     fn drunkard(&mut self, start: &Point, rng: &mut RandomNumberGenerator, map: &mut Map) {
-        let mut drunkard_pos = *start; // (6)
-        let mut distance_staggered = 0; // (7)
+        let mut drunkard_pos = *start;
+        let mut distance_staggered = 0;
 
         loop {
-            // (8)
             let drunk_idx = map.point2d_to_index(drunkard_pos);
-            map.tiles[drunk_idx] = TileType::Floor; // (9)
+            map.tiles[drunk_idx] = TileType::Floor;
 
             match rng.range(0, 4) {
-                // (10)
                 0 => drunkard_pos.x -= 1,
                 1 => drunkard_pos.x += 1,
                 2 => drunkard_pos.y -= 1,
                 _ => drunkard_pos.y += 1,
             }
             if !map.in_bounds(drunkard_pos) {
-                // (11)
                 break;
             }
 
-            distance_staggered += 1; // (12)
+            distance_staggered += 1;
             if distance_staggered > STAGGER_DISTANCE {
                 break;
             }

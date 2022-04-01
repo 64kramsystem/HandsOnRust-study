@@ -17,7 +17,7 @@ impl MapBuilder {
         mb.fill(TileType::Wall);
         mb.build_random_rooms(rng);
         mb.build_corridors(rng);
-        mb.player_start = mb.rooms[0].center(); // (1)
+        mb.player_start = mb.rooms[0].center();
         mb
     }
 
@@ -26,24 +26,20 @@ impl MapBuilder {
     }
 
     fn build_random_rooms(&mut self, rng: &mut RandomNumberGenerator) {
-        // (2)
         while self.rooms.len() < NUM_ROOMS {
-            // (3)
             let room = Rect::with_size(
-                // (4)
                 rng.range(1, SCREEN_WIDTH - 10),
                 rng.range(1, SCREEN_HEIGHT - 10),
                 rng.range(2, 10),
                 rng.range(2, 10),
             );
-            let mut overlap = false; // (5)
+            let mut overlap = false;
             for r in &self.rooms {
                 if r.intersect(&room) {
                     overlap = true;
                 }
             }
             if !overlap {
-                // (6)
                 room.for_each(|p| {
                     if p.x > 0 && p.x < SCREEN_WIDTH && p.y > 0 && p.y < SCREEN_HEIGHT {
                         let idx = map_idx(p.x, p.y);
@@ -76,15 +72,13 @@ impl MapBuilder {
 
     fn build_corridors(&mut self, rng: &mut RandomNumberGenerator) {
         let mut rooms = self.rooms.clone();
-        rooms.sort_by(|a, b| a.center().x.cmp(&b.center().x)); // (7)
+        rooms.sort_by(|a, b| a.center().x.cmp(&b.center().x));
 
         for (i, room) in rooms.iter().enumerate().skip(1) {
-            // (8)
-            let prev = rooms[i - 1].center(); // (9)
+            let prev = rooms[i - 1].center();
             let new = room.center();
 
             if rng.range(0, 2) == 1 {
-                // (10)
                 self.apply_horizontal_tunnel(prev.x, new.x, prev.y);
                 self.apply_vertical_tunnel(prev.y, new.y, new.x);
             } else {

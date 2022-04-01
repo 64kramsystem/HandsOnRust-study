@@ -23,19 +23,18 @@ pub fn player_input(
             VirtualKeyCode::Up => Point::new(0, -1),
             VirtualKeyCode::Down => Point::new(0, 1),
             VirtualKeyCode::G => {
-                // (1)
-                let (player, player_pos) = players // (2)
+                let (player, player_pos) = players
                     .iter(ecs)
-                    .find_map(|(entity, pos)| Some((*entity, *pos))) // (3)
+                    .find_map(|(entity, pos)| Some((*entity, *pos)))
                     .unwrap();
 
-                let mut items = <(Entity, &Item, &Point)>::query(); // (4)
+                let mut items = <(Entity, &Item, &Point)>::query();
                 items
                     .iter(ecs)
-                    .filter(|(_entity, _item, &item_pos)| item_pos == player_pos) // (5)
+                    .filter(|(_entity, _item, &item_pos)| item_pos == player_pos)
                     .for_each(|(entity, _item, _item_pos)| {
-                        commands.remove_component::<Point>(*entity); // (6)
-                        commands.add_component(*entity, Carried(player)); // (7)
+                        commands.remove_component::<Point>(*entity);
+                        commands.add_component(*entity, Carried(player));
                     });
                 Point::new(0, 0)
             }
@@ -91,25 +90,22 @@ pub fn player_input(
 }
 
 fn use_item(n: usize, ecs: &mut SubWorld, commands: &mut CommandBuffer) -> Point {
-    // (8)
     let player_entity = <(Entity, &Player)>::query()
         .iter(ecs)
         .find_map(|(entity, _player)| Some(*entity))
-        .unwrap(); // (9)
+        .unwrap();
 
-    let item_entity = <(Entity, &Item, &Carried)>::query() // (10)
+    let item_entity = <(Entity, &Item, &Carried)>::query()
         .iter(ecs)
         .filter(|(_, _, carried)| carried.0 == player_entity)
-        .enumerate() // (11)
-        .filter(|(item_count, (_, _, _))| *item_count == n) // (12)
-        .find_map(|(_, (item_entity, _, _))| Some(*item_entity)); // (13)
+        .enumerate()
+        .filter(|(item_count, (_, _, _))| *item_count == n)
+        .find_map(|(_, (item_entity, _, _))| Some(*item_entity));
 
     if let Some(item_entity) = item_entity {
-        // (14)
         commands.push((
             (),
             ActivateItem {
-                // (15)
                 used_by: player_entity,
                 item: item_entity,
             },

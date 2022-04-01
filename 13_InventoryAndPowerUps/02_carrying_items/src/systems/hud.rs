@@ -32,22 +32,20 @@ pub fn hud(ecs: &SubWorld) {
     let player = <(Entity, &Player)>::query()
         .iter(ecs)
         .find_map(|(entity, _player)| Some(*entity))
-        .unwrap(); // (1)
-    let mut item_query = <(&Item, &Name, &Carried)>::query(); // (2)
-    let mut y = 3; // (3)
+        .unwrap();
+    let mut item_query = <(&Item, &Name, &Carried)>::query();
+    let mut y = 3;
     item_query
         .iter(ecs)
-        .filter(|(_, _, carried)| carried.0 == player) // (4)
+        .filter(|(_, _, carried)| carried.0 == player)
         .for_each(|(_, name, _)| {
             draw_batch.print(
-                // (5)
                 Point::new(3, y),
                 format!("{} : {}", y - 2, &name.0),
             );
             y += 1;
         });
     if y > 3 {
-        // (6)
         draw_batch.print_color(
             Point::new(3, 2),
             "Items carried",

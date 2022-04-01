@@ -17,8 +17,7 @@ pub fn spawn_player(ecs: &mut World, pos: Point) {
 
 pub fn spawn_monster(ecs: &mut World, rng: &mut RandomNumberGenerator, pos: Point) {
     let (hp, name, glyph) = match rng.roll_dice(1, 10) {
-        // (1)
-        1..=8 => goblin(), // (2)
+        1..=8 => goblin(),
         _ => orc(),
     };
 
@@ -33,8 +32,8 @@ pub fn spawn_monster(ecs: &mut World, rng: &mut RandomNumberGenerator, pos: Poin
         Health {
             current: hp,
             max: hp,
-        }, // (3)
-        Name(name), // (4)
+        },
+        Name(name),
     ));
 }
 

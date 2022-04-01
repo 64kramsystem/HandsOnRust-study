@@ -12,23 +12,20 @@ pub fn chasing(#[resource] map: &Map, ecs: &SubWorld, commands: &mut CommandBuff
     let player_pos = player.iter(ecs).next().unwrap().0;
     let player_idx = map_idx(player_pos.x, player_pos.y);
 
-    let search_targets = vec![player_idx]; // (1)
+    let search_targets = vec![player_idx];
     let dijkstra_map = DijkstraMap::new(
-        SCREEN_WIDTH, // (2)
+        SCREEN_WIDTH,
         SCREEN_HEIGHT,
         &search_targets,
-        map,    // (3)
-        1024.0, // (4)
+        map,
+        1024.0,
     );
 
     movers.iter(ecs).for_each(|(entity, pos, _)| {
-        // (5)
         let idx = map_idx(pos.x, pos.y);
         if let Some(destination) = DijkstraMap::find_lowest_exit(&dijkstra_map, idx, map) {
-            // (6)
-            let distance = DistanceAlg::Pythagoras.distance2d(*pos, *player_pos); // (7)
+            let distance = DistanceAlg::Pythagoras.distance2d(*pos, *player_pos);
             let destination = if distance > 1.2 {
-                // (8)
                 map.index_to_point2d(destination)
             } else {
                 *player_pos

@@ -28,13 +28,13 @@ pub fn combat(ecs: &mut SubWorld, commands: &mut CommandBuffer) {
             }
         } else {
             0
-        }; // (1)
+        };
 
         let weapon_damage: i32 = <(&Carried, &Damage)>::query()
             .iter(ecs)
             .filter(|(carried, _)| carried.0 == *attacker)
             .map(|(_, dmg)| dmg.0)
-            .sum(); // (2)
+            .sum();
 
         let final_damage = base_damage + weapon_damage;
 

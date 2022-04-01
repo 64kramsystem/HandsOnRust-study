@@ -98,15 +98,13 @@ impl State {
             .for_each(|e| {
                 entities_to_keep.insert(e);
             });
-        let mut cb = CommandBuffer::new(&mut self.ecs); // (1)
+        let mut cb = CommandBuffer::new(&mut self.ecs);
         for e in Entity::query().iter(&self.ecs) {
-            // (2)
             if !entities_to_keep.contains(e) {
-                // (3)
                 cb.remove(*e);
             }
         }
-        cb.flush(&mut self.ecs); // (4)
+        cb.flush(&mut self.ecs);
 
         <&mut FieldOfView>::query()
             .iter_mut(&mut self.ecs)

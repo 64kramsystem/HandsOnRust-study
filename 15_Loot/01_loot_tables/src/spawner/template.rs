@@ -1,23 +1,22 @@
 use crate::prelude::*;
 use legion::systems::CommandBuffer;
-use ron::de::from_reader; // (2)
-use serde::Deserialize; // (1)
+use ron::de::from_reader;
+use serde::Deserialize;
 use std::collections::HashSet;
-use std::fs::File; // (3)
+use std::fs::File;
 
-#[derive(Clone, Deserialize, Debug)] // (4)
+#[derive(Clone, Deserialize, Debug)]
 pub struct Template {
-    // (5)
-    pub entity_type: EntityType, // (6)
-    pub levels: HashSet<usize>,  // (7)
+    pub entity_type: EntityType,
+    pub levels: HashSet<usize>,
     pub frequency: i32,
     pub name: String,
     pub glyph: char,
-    pub provides: Option<Vec<(String, i32)>>, // (8)
+    pub provides: Option<Vec<(String, i32)>>,
     pub hp: Option<i32>,
 }
 
-#[derive(Clone, Deserialize, Debug, PartialEq)] // (9)
+#[derive(Clone, Deserialize, Debug, PartialEq)]
 pub enum EntityType {
     Enemy,
     Item,
@@ -25,15 +24,14 @@ pub enum EntityType {
 
 #[derive(Clone, Deserialize, Debug)]
 pub struct Templates {
-    // (10)
     pub entities: Vec<Template>,
 }
 
 impl Templates {
     pub fn load() -> Self {
-        let file = File::open("resources/template.ron") // (11)
+        let file = File::open("resources/template.ron")
             .expect("Failed opening file");
-        from_reader(file).expect("Unable to load templates") // (12)
+        from_reader(file).expect("Unable to load templates")
     }
 
     pub fn spawn_entities(
@@ -43,23 +41,20 @@ impl Templates {
         level: usize,
         spawn_points: &[Point],
     ) {
-        let mut available_entities = Vec::new(); // (13)
+        let mut available_entities = Vec::new();
         self.entities
-            .iter() // (14)
-            .filter(|e| e.levels.contains(&level)) // (15)
+            .iter()
+            .filter(|e| e.levels.contains(&level))
             .for_each(|t| {
                 for _ in 0..t.frequency {
-                    // (16)
                     available_entities.push(t);
                 }
             });
 
-        let mut commands = CommandBuffer::new(ecs); // (17)
+        let mut commands = CommandBuffer::new(ecs);
         for pt in spawn_points.iter() {
-            // (18)
             if let Some(entity) = rng.random_slice_entry(&available_entities) {
-                // (19)
-                self.spawn_entity(pt, entity, &mut commands); // (20)
+                self.spawn_entity(pt, entity, &mut commands);
             }
         }
         commands.flush(ecs);
@@ -67,13 +62,12 @@ impl Templates {
 
     fn spawn_entity(&self, pt: &Point, template: &Template, commands: &mut CommandBuffer) {
         let entity = commands.push((
-            // (21)
-            *pt, // (22)
+            *pt,
             Render {
                 color: ColorPair::new(WHITE, BLACK),
-                glyph: to_cp437(template.glyph), // (23)
+                glyph: to_cp437(template.glyph),
             },
-            Name(template.name.clone()), // (24)
+            Name(template.name.clone()),
         ));
         match template.entity_type {
             EntityType::Item => commands.add_component(entity, Item {}),

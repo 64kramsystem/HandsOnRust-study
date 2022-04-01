@@ -2,7 +2,7 @@ use crate::prelude::*;
 
 #[system(for_each)]
 #[read_component(Player)]
-#[read_component(FieldOfView)] // (1)
+#[read_component(FieldOfView)]
 pub fn movement(
     entity: &Entity,
     want_move: &WantsToMove,
@@ -15,9 +15,8 @@ pub fn movement(
         commands.add_component(want_move.entity, want_move.destination);
 
         if let Ok(entry) = ecs.entry_ref(want_move.entity) {
-            // (2)
             if let Ok(fov) = entry.get_component::<FieldOfView>() {
-                commands.add_component(want_move.entity, fov.clone_dirty()); // (3)
+                commands.add_component(want_move.entity, fov.clone_dirty());
             }
 
             if entry.get_component::<Player>().is_ok() {
