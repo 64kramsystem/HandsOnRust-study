@@ -25,14 +25,7 @@ pub fn map_render(#[resource] map: &Map, #[resource] camera: &Camera, ecs: &SubW
                 };
                 match map.tiles[idx] {
                     TileType::Floor => {
-                        draw_batch.set(
-                            pt - offset,
-                            ColorPair::new(
-                                tint,
-                                BLACK,
-                            ),
-                            to_cp437('.'),
-                        );
+                        draw_batch.set(pt - offset, ColorPair::new(tint, BLACK), to_cp437('.'));
                     }
                     TileType::Wall => {
                         draw_batch.set(pt - offset, ColorPair::new(tint, BLACK), to_cp437('#'));

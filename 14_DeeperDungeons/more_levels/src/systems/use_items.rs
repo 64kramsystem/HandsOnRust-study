@@ -10,7 +10,6 @@ pub fn use_items(ecs: &mut SubWorld, commands: &mut CommandBuffer, #[resource] m
     <(Entity, &ActivateItem)>::query()
         .iter(ecs)
         .for_each(|(entity, activate)| {
-
             let item = ecs.entry_ref(activate.item);
             if let Ok(item) = item {
                 if let Ok(healing) = item.get_component::<ProvidesHealing>() {

@@ -76,10 +76,7 @@ impl CellularAutomataArchitect {
             .map(|(idx, _)| {
                 (
                     idx,
-                    DistanceAlg::Pythagoras.distance2d(
-                        center,
-                        map.index_to_point2d(idx),
-                    ),
+                    DistanceAlg::Pythagoras.distance2d(center, map.index_to_point2d(idx)),
                 )
             })
             .min_by(|(_, distance), (_, distance2)| distance.partial_cmp(distance2).unwrap())

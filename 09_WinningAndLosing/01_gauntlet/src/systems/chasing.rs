@@ -13,13 +13,7 @@ pub fn chasing(#[resource] map: &Map, ecs: &SubWorld, commands: &mut CommandBuff
     let player_idx = map_idx(player_pos.x, player_pos.y);
 
     let search_targets = vec![player_idx];
-    let dijkstra_map = DijkstraMap::new(
-        SCREEN_WIDTH,
-        SCREEN_HEIGHT,
-        &search_targets,
-        map,
-        1024.0,
-    );
+    let dijkstra_map = DijkstraMap::new(SCREEN_WIDTH, SCREEN_HEIGHT, &search_targets, map, 1024.0);
 
     movers.iter(ecs).for_each(|(entity, pos, _)| {
         let idx = map_idx(pos.x, pos.y);

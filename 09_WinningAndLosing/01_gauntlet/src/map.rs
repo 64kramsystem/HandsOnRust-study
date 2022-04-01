@@ -65,8 +65,7 @@ impl Algorithm2D for Map {
 }
 
 impl BaseMap for Map {
-    fn get_available_exits(&self, idx: usize) -> SmallVec<[(usize, f32); 10]>
-    {
+    fn get_available_exits(&self, idx: usize) -> SmallVec<[(usize, f32); 10]> {
         let mut exits = SmallVec::new();
         let location = self.index_to_point2d(idx);
 

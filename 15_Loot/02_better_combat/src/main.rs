@@ -77,7 +77,8 @@ impl State {
     fn advance_level(&mut self) {
         let player_entity = *<Entity>::query()
             .filter(component::<Player>())
-            .iter(&mut self.ecs).next()
+            .iter(&mut self.ecs)
+            .next()
             .unwrap();
 
         use std::collections::HashSet;
